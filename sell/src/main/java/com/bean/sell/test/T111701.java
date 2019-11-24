@@ -9,5 +9,6 @@ public class T111701 {
         Map<String,String> map = new HashMap<>();
         map.put("openId","wx440981");
         System.out.println(map.toString());
+        //text git update.
     }
 }
