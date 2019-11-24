@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    username: scott
+    password: 123456
+    url: jdbc:oracle:thin:@localhost:1522:myorcl
+    type: com.alibaba.druid.pool.DruidDataSource
+  jpa:
+    show-sql: true
+  jackson:
+    default-property-inclusion: non_null
+
+mybatis:
+  mapper-locations: classpath*:mappings/**/**.xml
+  type-aliases-package: com.bean.sell
+  #config-location: classpath:mybatisConfig.xml
+  configuration:
+    jdbc-type-for-null: 'null'
+
+pagehelper:
+  helper-dialect: oracle
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+server:
+  context-path: /sell
+
+wechat:
+  mpAppId: wxd898fcb01713c658
+  mpAppSecret: 29d8a650db31472aa87800e3b0d739f2

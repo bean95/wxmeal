@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.bean.sell.dao.OrderMasterDao">
+
+	<sql id="sql">
+		id AS "id",
+		buyer_name AS "buyerName",
+		buyer_phone AS "buyerPhone",
+		buyer_address AS "buyerAddress",
+		buyer_openid AS "buyerOpenid",
+		order_amount AS "orderAmount",
+		order_status AS "orderStatus",
+		pay_status AS "payStatus",
+		create_date AS "createDate",
+		create_by AS "createBy",
+		update_date AS "updateDate",
+		update_by AS "updateBy",
+		del_flag AS "delFlag"
+	</sql>
+
+	<select id="get" resultType="OrderMaster">
+		select
+		<include refid="sql"></include>
+		from order_master
+		where id = #{id}
+	</select>
+
+	<select id="findList" resultType="OrderMaster">
+		select 
+		<include refid="sql"></include>
+		from order_master
+		<where>
+			<if test="buyerOpenid != null and buyerOpenid != ''">
+				buyer_openid = #{buyerOpenid}
+			</if>
+		</where>
+	</select>
+
+	<insert id="insert">
+		insert into order_master
+  		(id, buyer_name, buyer_phone, buyer_address, buyer_openid, order_amount, order_status, pay_status, create_date, create_by, update_date, update_by, del_flag)
+		values(
+			#{id},
+			#{buyerName},
+			#{buyerPhone},
+			#{buyerAddress},
+			#{buyerOpenid},
+			#{orderAmount},
+			#{orderStatus},
+			#{payStatus},
+			#{createDate},
+			#{createBy},
+			#{updateDate},
+			#{updateBy},
+			#{delFlag}
+		)
+	</insert>
+
+	<update id="update">
+		update order_master
+		<set>
+			<if test="buyerName != ''">
+				buyer_name = #{buyerName},
+			</if>
+			<if test="buyerPhone != ''">
+				buyer_phone = #{buyerPhone},
+			</if>
+			<if test="buyerAddress != ''">
+				buyer_address = #{buyerAddress},
+			</if>
+			<if test="buyerOpenid != ''">
+				buyer_openid = #{buyerOpenid},
+			</if>
+			<if test="orderAmount != ''">
+				order_amount = #{orderAmount},
+			</if>
+			<if test="orderStatus != ''">
+				order_status = #{orderStatus},
+			</if>
+			<if test="payStatus != ''">
+				pay_status = #{payStatus},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate},
+			</if>
+			<if test="updateBy != null">
+				update_by = #{updateBy},
+			</if>
+			<if test="delFlag != null">
+				del_flag = #{delFlag},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+
+
+
+
+
+</mapper>
+

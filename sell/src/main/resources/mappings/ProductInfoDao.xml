@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.bean.sell.dao.ProductInfoDao">
+
+	<sql id="col">
+		id AS "id",
+		name AS "name",
+		price AS "price",
+		stock AS "stock",
+		description AS "description",
+		icon AS "icon",
+		status AS "status",
+		type AS "type",
+		create_date AS "createDate",
+		create_by AS "createBy",
+		update_date AS "updateDate",
+		update_by AS "updateBy",
+		del_flag AS "delFlag"
+	</sql>
+
+	<select id="get" resultType="ProductInfo">
+		select
+		<include refid="col"></include>
+		from product_info
+		where id = #{id}
+	</select>
+
+	<select id="findAll" resultType="ProductInfo">
+		select 
+		<include refid="col"></include>
+		from product_info
+	</select>
+
+	<insert id="insert">
+		insert into product_info(id,name,price,stock,description,icon,status,type,create_date,create_by,update_date,update_by,del_flag)
+		values(
+			#{id},
+			#{name},
+			#{price},
+			#{stock},
+			#{description},
+			#{icon},
+			#{status},
+			#{type},
+			#{createDate},
+			#{createBy},
+			#{updateDate},
+			#{updateBy},
+			#{delFlag}
+		)
+	</insert>
+
+	<update id="update">
+		update product_info
+		<set>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="price != null">
+				price = #{price},
+			</if>
+			<if test="stock != null">
+				stock = #{stock},
+			</if>
+			<if test="description != null">
+				description = #{description},
+			</if>
+			<if test="icon != null">
+				icon = #{icon},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="type != null">
+				type = #{type},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate},
+			</if>
+			<if test="updateBy != null">
+				update_by = #{updateBy},
+			</if>
+			<if test="delFlag != null">
+				del_flag = #{delFlag},
+			</if>
+		</set>
+		where id = #{id}
+
+	</update>
+
+
+
+
+</mapper>
+

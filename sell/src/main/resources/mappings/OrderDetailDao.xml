@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.bean.sell.dao.OrderDetailDao">
+
+	<sql id="sql">
+		id AS "id",
+		order_id AS "orderId",
+		product_id AS "productId",
+		product_name AS "productName",
+		product_price AS "productPrice",
+		product_quantity AS "productQuantity",
+		product_icon AS "productIcon",
+		create_date AS "createDate",
+		create_by AS "createBy",
+		update_date AS "updateDate",
+		update_by AS "updateBy",
+		del_flag AS "delFlag"
+	</sql>
+
+	<select id="get" resultType="OrderDetail">
+		select
+		<include refid="sql"></include>
+		from order_detail
+		where id = #{id}
+	</select>
+
+	<select id="findList" resultType="OrderDetail">
+		select
+		<include refid="sql"></include>
+		from order_detail
+		<where>
+			<if test="id != null and id != ''">
+				and id = #{id}
+			</if>
+			<if test="orderId != null and orderId !=''">
+				and order_id = #{orderId}
+			</if>
+		</where>
+	</select>
+
+	<insert id="insert">
+		insert into order_detail
+  		(id, order_id, product_id, product_name, product_price, product_quantity, product_icon, create_date, create_by, update_date, update_by, del_flag)
+		values(
+			#{id},
+			#{orderId},
+			#{productId},
+			#{productName},
+			#{productPrice},
+			#{productQuantity},
+			#{productIcon},
+			#{createDate},
+			#{createBy},
+			#{updateDate},
+			#{updateBy},
+			#{delFlag}
+		)
+	</insert>
+
+
+
+
+
+
+
+
+</mapper>
+
