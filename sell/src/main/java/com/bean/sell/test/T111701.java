@@ -10,5 +10,6 @@ public class T111701 {
         map.put("openId","wx440981");
         System.out.println(map.toString());
         //text git update.
+        //update by clone.
     }
 }
